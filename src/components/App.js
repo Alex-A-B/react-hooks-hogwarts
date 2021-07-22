@@ -25,13 +25,20 @@ const hogsToSort = hogs.filter((hog) => {
       return hog.greased.toString() === filterBy
     })
 
+    
 const hogsToDisplay = hogsToSort.sort((a, b) => {
-  if (sortBy.toString() === "name") {
-      return a.name.toLowerCase() - b.name.toLowerCase()
-  }   return a.weight - b.weight
+  if (sortBy.toString() === "weight") {
+      return a.weight - b.weight
+  } else {
+    let x = a.name.toLowerCase();
+    let y = b.name.toLowerCase();
+    if (x < y) {return -1;}
+    if (x > y) {return 1;}
+    return 0;
+  }
 })
-
-  return (
+    
+return (
     <div className="App">
       <Nav />
       <HogFilter handleFilterChange={handleFilterChange}/>
